@@ -1,0 +1,117 @@
+- class_name: Car
+  description: Represents a car with its attributes and behaviors.
+  attributes:
+  - name: model
+    type: str
+  - name: num_seats
+    type: int
+  - name: weight_limit
+    type: float
+  methods:
+  - name: start_engine
+    params: []
+    return_type: None
+    body:
+    - '# Start the car''s engine'
+    - print('Engine started')
+  - name: drive
+    params:
+    - name: distance
+      type: float
+    return_type: None
+    body:
+    - '# Simulate driving the car'
+    - print(f'Driving {distance} miles')
+- class_name: Truck
+  description: Represents a truck with its attributes and behaviors.
+  attributes:
+  - name: model
+    type: str
+  - name: cargo_capacity
+    type: float
+  - name: weight_limit
+    type: float
+  methods:
+  - name: load_cargo
+    params:
+    - name: weight
+      type: float
+    return_type: None
+    body:
+    - '# Load the specified weight of cargo'
+    - print(f'Loaded {weight} lbs of cargo')
+  - name: unload_cargo
+    params: []
+    return_type: None
+    body:
+    - '# Unload cargo from the truck'
+    - print('Cargo unloaded')
+- class_name: Driver
+  description: Represents a driver with a license and the cars they can drive.
+  attributes:
+  - name: name
+    type: str
+  - name: license_number
+    type: str
+  methods:
+  - name: drive_car
+    params:
+    - name: car
+      type: Car
+    return_type: None
+    body:
+    - '# Driver drives the specified car'
+    - car.start_engine()
+- class_name: CarDriver_1N
+  description: Represents the relationship between drivers and cars (1 driver can
+    drive many cars).
+  attributes:
+  - name: driver_id
+    type: int
+  - name: car_id
+    type: int
+  - name: license_number
+    type: str
+  methods:
+  - name: add_car
+    params:
+    - name: car
+      type: Car
+    return_type: None
+    body:
+    - '# Add a car to the driver''s list'
+    - print(f'Car {car.model} added for driver {self.driver_id}')
+  - name: get_cars
+    params: []
+    return_type: List[Car]
+    body:
+    - '# Return a list of cars driven by the driver'
+    - return self.cars
+- class_name: CarDriver_NN
+  description: Represents the many-to-many relationship between drivers and cars.
+  attributes:
+  - name: driver_id
+    type: int
+  - name: car_id
+    type: int
+  methods:
+  - name: assign_driver
+    params:
+    - name: driver
+      type: Driver
+    - name: car
+      type: Car
+    return_type: None
+    body:
+    - '# Assign a driver to a car'
+    - print(f'Driver {driver.name} assigned to car {car.model}')
+  - name: remove_driver
+    params:
+    - name: driver
+      type: Driver
+    - name: car
+      type: Car
+    return_type: None
+    body:
+    - '# Remove a driver''s assignment from a car'
+    - print(f'Driver {driver.name} removed from car {car.model}')
